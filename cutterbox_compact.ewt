@@ -2850,73 +2850,10 @@
         <group>
             <name>inc</name>
             <file>
-                <name>$PROJ_DIR$\CMSIS\inc\cmsis_armcc.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\CMSIS\inc\cmsis_armclang.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\CMSIS\inc\cmsis_compiler.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\CMSIS\inc\cmsis_gcc.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\CMSIS\inc\cmsis_iccarm.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\CMSIS\inc\cmsis_version.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\CMSIS\inc\core_armv8mbl.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\CMSIS\inc\core_armv8mml.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\CMSIS\inc\core_cm0.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\CMSIS\inc\core_cm0plus.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\CMSIS\inc\core_cm1.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\CMSIS\inc\core_cm23.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\CMSIS\inc\core_cm3.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\CMSIS\inc\core_cm33.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\CMSIS\inc\core_cm4.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\CMSIS\inc\core_cm7.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\CMSIS\inc\core_sc000.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\CMSIS\inc\core_sc300.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\CMSIS\inc\mpu_armv7.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\CMSIS\inc\mpu_armv8.h</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\CMSIS\inc\stm32f4xx.h</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\CMSIS\inc\system_stm32f4xx.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\CMSIS\inc\tz_context.h</name>
             </file>
         </group>
         <group>
