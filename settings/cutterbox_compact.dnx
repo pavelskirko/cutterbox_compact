@@ -16,7 +16,7 @@
         <ShowSource>1</ShowSource>
     </Trace1>
     <DebugChecksum>
-        <Checksum>3401540287</Checksum>
+        <Checksum>365965055</Checksum>
     </DebugChecksum>
     <Disassembly>
         <MixedMode>1</MixedMode>
@@ -45,16 +45,16 @@
         <MultiCoreRunAll>1</MultiCoreRunAll>
     </Simulator>
     <PlDriver>
-        <FirstRun>0</FirstRun>
         <MemConfigValue>C:\Program Files\IAR Systems\Embedded Workbench 9.1\arm\CONFIG\debugger\ST\STM32F411CE.ddf</MemConfigValue>
+        <FirstRun>0</FirstRun>
     </PlDriver>
     <StLinkDriver>
-        <stlinkserialNo>2A44160012144D43574D4E00</stlinkserialNo>
-        <stlinkfoundProbes />
         <LeaveTargetRunning>_ 0</LeaveTargetRunning>
         <CStepIntDis>_ 0</CStepIntDis>
         <stlinkResetStyle>0</stlinkResetStyle>
         <stlinkResetStrategy>0</stlinkResetStrategy>
+        <stlinkserialNo>2A44160012144D43574D4E00</stlinkserialNo>
+        <stlinkfoundProbes />
     </StLinkDriver>
     <ArmDriver>
         <EnableCache>0</EnableCache>
@@ -78,11 +78,6 @@
         <ITMportsLogFile>0</ITMportsLogFile>
         <ITMlogFile>$PROJ_DIR$\ITM.log</ITMlogFile>
     </SWOTraceHWSettings>
-    <LogFile>
-        <LoggingEnabled>_ 0</LoggingEnabled>
-        <LogFile>_ ""</LogFile>
-        <Category2>_ 0</Category2>
-    </LogFile>
     <Trace2>
         <Enabled>0</Enabled>
         <ShowSource>0</ShowSource>
@@ -134,10 +129,6 @@
     <Breakpoints2>
         <Count>0</Count>
     </Breakpoints2>
-    <TermIOLog>
-        <LoggingEnabled>_ 0</LoggingEnabled>
-        <LogFile>_ ""</LogFile>
-    </TermIOLog>
     <Aliases>
         <Count>0</Count>
         <SuppressDialog>0</SuppressDialog>
@@ -149,4 +140,13 @@
         <Symbiont>0</Symbiont>
         <Exclusions />
     </DriverProfiling>
+    <TermIOLog>
+        <LoggingEnabled>_ 0</LoggingEnabled>
+        <LogFile>_ ""</LogFile>
+    </TermIOLog>
+    <LogFile>
+        <LoggingEnabled>_ 0</LoggingEnabled>
+        <LogFile>_ ""</LogFile>
+        <Category2>_ 0</Category2>
+    </LogFile>
 </settings>

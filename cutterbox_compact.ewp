@@ -2229,55 +2229,7 @@
         <group>
             <name>inc</name>
             <file>
-                <name>$PROJ_DIR$\Code\inc\bitmap.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\Code\inc\flash_control.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\Code\inc\I2C.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\Code\inc\ISL_control.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\Code\inc\libWWDG.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\Code\inc\log.h</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\Code\inc\main.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\Code\inc\modUART.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\Code\inc\peltier_control.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\Code\inc\power_control.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\Code\inc\press_button.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\Code\inc\press_tamper.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\Code\inc\rgb_led_control.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\Code\inc\SFE_ISL29125.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\Code\inc\TCS_control.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\Code\inc\watch_dog_test.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\Code\inc\zond_control.h</name>
             </file>
         </group>
         <group>
