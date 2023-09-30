@@ -64,19 +64,10 @@ int main (void)
   GPIOB->OTYPER |= GPIO_OTYPER_OT_1;
 //  GPIOB->PUPDR |= GPIO_PUPDR_PUPDR1_0;
   GPIOB->ODR |= GPIO_ODR_ODR_1;
-  
+  InterfaceDraw(0, 0, "m");
   while (1)
   {
-    if (count_update)
-    {
-      count_update = 0;
-      draw_countdown(count);
-      if (!count)
-      {
-        GPIOB->ODR &= ~GPIO_ODR_ODR_1;
-      }
-    }
-    
+    InterfaceUpdate();
   }
 }
 

@@ -3,15 +3,20 @@
 
 #include "stm32f4xx.h"
 #include <string.h>
+#include "main.h"
 
 typedef struct {
   uint16_t CurrentX;
   uint16_t CurrentY;
   uint8_t Initialized;
+  uint16_t SelectedX;
+  uint16_t SelectedY;
 } SSD1306_t;
 
 #define FONT_HEIGHT     26
 #define FONT_WIDTH      16
+#define SMALL_FONT_HEIGHT     18
+#define SMALL_FONT_WIDTH      11
 #define SSD1306_WIDTH            128
 #define SSD1306_HEIGHT           64
 #define SSD1306_RIGHT_HORIZONTAL_SCROLL              0x26
@@ -32,5 +37,11 @@ void SSD1306_DrawPixel(uint16_t x, uint16_t y, uint8_t color);
 void ScreenInit();
 void I2C_init();
 void draw_countdown(uint32_t numb);
+void draw_a_symbol(char symb);
+void InterfaceDraw(uint8_t digits_one, uint8_t digit_two, char * time_unit);
+void InterfaceUpdate();
+void ClearArea(uint16_t x, uint16_t y, uint16_t height, uint16_t width);
+
+extern uint8_t number_fade;
 
 #endif

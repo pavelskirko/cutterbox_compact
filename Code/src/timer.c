@@ -22,11 +22,7 @@ void TIM5_Init()
 void TIM5_IRQHandler(void) {
     // Clear the interrupt flag
     TIM5->SR &= ~TIM_SR_UIF;
-    if(count)
-    {
-      count--;
-      count_update = 1;
-    }
+    number_fade ^= 1;
     GPIOC->ODR ^= GPIO_ODR_ODR_13;
     // Your code here (will be executed when the timer overflows)
 }
