@@ -92,7 +92,7 @@ void SSD1306_DrawPixel(uint16_t x, uint16_t y, uint8_t color)
   }
 }
 
-void draw_a_number(uint8_t numb)
+void draw_a_digit(uint8_t numb)
 {
   uint32_t pixel;
   for (uint8_t i = 0; i < FONT_HEIGHT; i++) 
@@ -163,4 +163,29 @@ void ssd1306_write(uint32_t data)
   while ((I2C1->SR1 & (I2C_SR1_BTF | I2C_SR1_AF)) == 0);
   // Generate stop condition
   I2C1->CR1 |= I2C_CR1_STOP;
+}
+
+void draw_a_number(uint32_t numb)
+{
+  uint8_t digits[32];
+  uint8_t number_of_digits = 0;
+  while(numb)
+  {
+    digits[number_of_digits] = numb%10;
+    numb /= 10;
+    number_of_digits++;
+  }
+  for (int8_t i = number_of_digits - 1; i >= 0; i--)
+  {
+    draw_a_digit(digits[i]);
+  }
+}
+
+void draw_countdown(uint32_t numb)
+{
+  memset(SSD1306_Buffer, 0, sizeof(SSD1306_Buffer));
+  SSD1306.CurrentX = 20;
+  SSD1306.CurrentY = 20;
+  draw_a_number(numb);
+  SSD1306_UpdateScreen();
 }

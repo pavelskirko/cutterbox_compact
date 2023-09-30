@@ -1,5 +1,8 @@
 #include "main.h"
 
+uint32_t count = 30;
+uint32_t count_update = 0;
+
 void delay(uint32_t ms) {
   // Assuming a system clock of 16MHz
   uint32_t ticks = ms * 16000; // Each millisecond has 16,000 ticks
@@ -37,8 +40,8 @@ void SysInit(void) {
   
   // Configure the AHB, APB1, and APB2 prescalers (if needed)
   RCC->CFGR |= RCC_CFGR_HPRE_DIV1;  // AHB prescaler = 1
-  RCC->CFGR |= RCC_CFGR_PPRE1_DIV4; // APB1 prescaler = 4 131 / 4 = 32.8
-  RCC->CFGR |= RCC_CFGR_PPRE2_DIV2; // APB2 prescaler = 2
+  RCC->CFGR |= RCC_CFGR_PPRE1_DIV4; // APB1 prescaler = 4 168 / 4 = 42
+  RCC->CFGR |= RCC_CFGR_PPRE2_DIV16; // APB2 prescaler = 8 (21)
 }
 
 int main (void)
@@ -53,18 +56,27 @@ int main (void)
   GPIOC->PUPDR &= ~GPIO_PUPDR_PUPDR13; // No pull-up, no pull-down
   SysInit();
   I2C_init();
-  draw_a_number(0);
-  draw_a_number(1);
-  draw_a_number(2);
-  draw_a_number(3);
-  draw_a_number(4);
-  draw_a_number(5);
-  draw_a_number(6);
-  SSD1306_UpdateScreen();
+  ScreenInit();
+  TIM5_Init();
+
+   GPIOB->MODER &= ~GPIO_MODER_MODER1;
+  GPIOB->MODER |= GPIO_MODER_MODER1_0;
+  GPIOB->OTYPER |= GPIO_OTYPER_OT_1;
+//  GPIOB->PUPDR |= GPIO_PUPDR_PUPDR1_0;
+  GPIOB->ODR |= GPIO_ODR_ODR_1;
+  
   while (1)
   {
-    GPIOC->ODR ^= GPIO_ODR_ODR_13;
-    delay(1000);
+    if (count_update)
+    {
+      count_update = 0;
+      draw_countdown(count);
+      if (!count)
+      {
+        GPIOB->ODR &= ~GPIO_ODR_ODR_1;
+      }
+    }
+    
   }
 }
 

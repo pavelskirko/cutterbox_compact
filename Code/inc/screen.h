@@ -26,9 +26,11 @@ typedef struct {
 
 void ssd1306_write(uint32_t data);
 void SSD1306_UpdateScreen(void);
-void draw_a_number(uint8_t numb);
+void draw_a_digit(uint8_t numb);
+void draw_a_number(uint32_t numb);
 void SSD1306_DrawPixel(uint16_t x, uint16_t y, uint8_t color);
 void ScreenInit();
 void I2C_init();
+void draw_countdown(uint32_t numb);
 
 #endif
