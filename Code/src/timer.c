@@ -1,6 +1,9 @@
 #include "timer.h"
 
 uint8_t button_actions = 0;
+uint32_t timer = 0;
+uint32_t real_timer = 0;
+uint32_t seconds = 0;
 
 void TIM5_Init()
 {
@@ -42,6 +45,15 @@ void TIM5_IRQHandler(void) {
   number_fade ^= 1;
   GPIOC->ODR ^= GPIO_ODR_ODR_13;
   interface_update = 1;
+  if (countdown)
+  {
+    countdown_update = 1;
+    real_timer--;
+    if(time_digits[2] == 0)
+    {
+      seconds++;
+    }
+  }
   // Your code here (will be executed when the timer overflows)
 }
 
@@ -182,16 +194,18 @@ void ButtonAction2()
 
 void ButtonAction3()
 {
-  uint32_t timer = 0;
+  timer = (time_digits[0] * 10 + time_digits[1]);
   switch(time_digits[2])
   {
   case 0:
-    timer = (time_digits[0] * 10 + time_digits[1]) * 60;
+    real_timer = timer * 60;
     break;
   case 1:
-    timer = (time_digits[0] * 10 + time_digits[1]);
+    real_timer = timer;
     break;
   }
+  countdown = 1;
+  CountDownInterfaceUpdate();
 }
 
 void ButtonProcessing()
@@ -213,4 +227,22 @@ void ButtonProcessing()
     ButtonAction3();
   }
   button_actions = 0;
+}
+
+void CountdownProcessing()
+{
+  if (time_digits[2] == 0 & seconds >= 60)
+  {
+    timer--;
+    seconds -= 60;
+  }
+  else if (time_digits[2])
+  {
+    timer = real_timer;
+  }
+  if (timer == 0)
+  {
+    ScreenFill();
+    FinishOperation();
+  }
 }

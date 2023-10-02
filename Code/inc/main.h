@@ -7,7 +7,12 @@
 #include "core_cm4.h"
 #include "buttons.h"
 
+void FinishOperation();
+
 extern uint32_t count;
 extern uint32_t count_update;
 extern volatile uint32_t interface_update;
+extern uint8_t countdown;
+extern uint8_t countdown_update;
+
 #endif

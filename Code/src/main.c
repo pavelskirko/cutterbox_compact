@@ -2,6 +2,8 @@
 
 uint32_t count = 30;
 uint32_t count_update = 0;
+uint8_t countdown = 0;
+uint8_t countdown_update = 0;
 volatile uint32_t interface_update = 0;
 
 void delay(uint32_t ms) {
@@ -73,11 +75,25 @@ int main (void)
   while (1)
   {
     ButtonProcessing();
-    if (interface_update)
+    if (interface_update & !countdown)
     {
       interface_update = 0;
       InterfaceUpdate();
     }
+    else if (countdown & countdown_update)
+    {
+      countdown_update = 0;
+      CountdownProcessing();
+      CountDownInterfaceUpdate();
+    }
   }
+}
+
+void FinishOperation()
+{
+  TIM5->CR1 &= ~TIM_CR1_CEN;
+  TIM2->CR1 &= ~TIM_CR1_CEN;
+  countdown = 0;
+  interface_update= 0;
 }
 
