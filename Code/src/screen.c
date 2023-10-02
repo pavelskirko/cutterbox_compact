@@ -116,6 +116,9 @@ static uint8_t SSD1306_Buffer[SSD1306_WIDTH * SSD1306_HEIGHT / 8];
 uint8_t slaveID = 0x3C;
 uint8_t number_fade = 0;
 uint8_t selected_symb = 0;
+uint8_t time_digits[3];
+char units[] = "m";
+uint8_t number_lightup = 0;
 
 static SSD1306_t SSD1306;
 
@@ -358,10 +361,8 @@ void set_first_symbol()
 
 void InterfaceUpdate()
 {
-  static uint8_t time_digits[3];
   static uint8_t faded_symb = 0;
-  static char units[] = "m";
-  if (number_fade)
+  if (number_fade & !number_lightup)
   {
     faded_symb |= (1<<selected_symb);
     ClearArea(SSD1306.SelectedX, SSD1306.SelectedY, FONT_HEIGHT, FONT_WIDTH);

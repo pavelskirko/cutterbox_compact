@@ -69,8 +69,10 @@ int main (void)
   GPIOB->ODR |= GPIO_ODR_ODR_1;
   InterfaceDraw(0, 0, "m");
   set_first_symbol();
+  
   while (1)
   {
+    ButtonProcessing();
     if (interface_update)
     {
       interface_update = 0;

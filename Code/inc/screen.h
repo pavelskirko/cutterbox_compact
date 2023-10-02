@@ -45,5 +45,8 @@ void set_first_symbol();
 
 extern uint8_t number_fade;
 extern uint8_t selected_symb;
+extern uint8_t time_digits[3];
+extern char units[];
+extern uint8_t number_lightup;
 
 #endif
