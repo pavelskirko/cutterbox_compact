@@ -9,5 +9,5 @@
 
 extern uint32_t count;
 extern uint32_t count_update;
-
+extern volatile uint32_t interface_update;
 #endif

@@ -2,6 +2,7 @@
 
 uint32_t count = 30;
 uint32_t count_update = 0;
+volatile uint32_t interface_update = 0;
 
 void delay(uint32_t ms) {
   // Assuming a system clock of 16MHz
@@ -58,6 +59,7 @@ int main (void)
   I2C_init();
   ScreenInit();
   TIM5_Init();
+  TIM2_Init();
   Buttons_Init();
 
    GPIOB->MODER &= ~GPIO_MODER_MODER1;
@@ -66,9 +68,14 @@ int main (void)
 //  GPIOB->PUPDR |= GPIO_PUPDR_PUPDR1_0;
   GPIOB->ODR |= GPIO_ODR_ODR_1;
   InterfaceDraw(0, 0, "m");
+  set_first_symbol();
   while (1)
   {
-    InterfaceUpdate();
+    if (interface_update)
+    {
+      interface_update = 0;
+      InterfaceUpdate();
+    }
   }
 }
 

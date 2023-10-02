@@ -348,6 +348,10 @@ void InterfaceDraw(uint8_t digits_one, uint8_t digit_two, char * time_unit)
   SSD1306.CurrentX = 117;
   SSD1306.CurrentY = 27;
   draw_a_string(time_unit);
+}
+
+void set_first_symbol()
+{
   SSD1306.SelectedX = 74;
   SSD1306.SelectedY = 19;
 }

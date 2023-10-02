@@ -18,16 +18,10 @@ void Buttons_Init()
 
 void EXTI0_IRQHandler(void) {
   if (EXTI->PR & (1 << BUTTON_PIN_1)) {
-    // Clear the EXTI status flag.
     EXTI->PR |= (1 << BUTTON_PIN_1);
-    // Toggle the global 'led on?' variable.
-    if(selected_symb < 3)
-    {
-      selected_symb++;
-    }
-    else
-    {
-      selected_symb = 0;
-    }
+    EXTI->IMR  &=  ~(1 << BUTTON_PIN_1);
+    TIM2->ARR = 20;
+    TIM2->CNT = 0;
+    TIM2->CR1 |= TIM_CR1_CEN;
   }
 }

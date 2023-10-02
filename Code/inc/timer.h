@@ -5,5 +5,6 @@
 #include "main.h"
 
 void TIM5_Init();
+void TIM2_Init();
 
 #endif
