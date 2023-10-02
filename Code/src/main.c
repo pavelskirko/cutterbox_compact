@@ -58,6 +58,7 @@ int main (void)
   I2C_init();
   ScreenInit();
   TIM5_Init();
+  Buttons_Init();
 
    GPIOB->MODER &= ~GPIO_MODER_MODER1;
   GPIOB->MODER |= GPIO_MODER_MODER1_0;

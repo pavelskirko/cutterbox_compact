@@ -43,5 +43,6 @@ void InterfaceUpdate();
 void ClearArea(uint16_t x, uint16_t y, uint16_t height, uint16_t width);
 
 extern uint8_t number_fade;
+extern uint8_t selected_symb;
 
 #endif

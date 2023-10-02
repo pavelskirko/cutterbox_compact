@@ -115,6 +115,7 @@ static uint8_t SSD1306_Buffer[SSD1306_WIDTH * SSD1306_HEIGHT / 8];
 
 uint8_t slaveID = 0x3C;
 uint8_t number_fade = 0;
+uint8_t selected_symb = 0;
 
 static SSD1306_t SSD1306;
 
@@ -353,7 +354,6 @@ void InterfaceDraw(uint8_t digits_one, uint8_t digit_two, char * time_unit)
 void InterfaceUpdate()
 {
   static uint8_t time_digits[3];
-  static uint8_t selected_symb = 0;
   static uint8_t faded_symb = 0;
   static char units[] = "m";
   if (number_fade)
@@ -368,6 +368,7 @@ void InterfaceUpdate()
     case 0:
       SSD1306.CurrentX = 74;
       SSD1306.CurrentY = 19;
+      faded_symb &= ~(1<<selected_symb);
       draw_a_number(time_digits[selected_symb]);
       SSD1306.SelectedX = 74;
       SSD1306.SelectedY = 19;
@@ -375,20 +376,22 @@ void InterfaceUpdate()
     case 1:
       SSD1306.CurrentX = 94;
       SSD1306.CurrentY = 19;
+      faded_symb &= ~(1<<selected_symb);
       draw_a_number(time_digits[selected_symb]);
-      SSD1306.SelectedX = 90;
+      SSD1306.SelectedX = 94;
       SSD1306.SelectedY = 19;
       break;
     case 2:
       SSD1306.CurrentX = 117;
       SSD1306.CurrentY = 27;
+      faded_symb &= ~(1<<selected_symb);
       draw_a_string(units);
       SSD1306.SelectedX = 117;
       SSD1306.SelectedY = 19;
       break;
     }
   }
-  faded_symb &= ~(1<<selected_symb);
+  
   if(faded_symb)
   {
     faded_symb = 0;
