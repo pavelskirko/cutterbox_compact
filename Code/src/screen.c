@@ -136,7 +136,8 @@ void I2C_init()
   I2C1->CR1 &= ~I2C_CR1_PE;
   I2C1->CR2 &= ~I2C_CR2_FREQ;
   I2C1->CR2 |= 42;
-  I2C1->CCR |= 210;
+  I2C1->CCR |= I2C_CCR_FS | I2C_CCR_DUTY;
+  I2C1->CCR |= 4;
   I2C1->TRISE = 43;
   I2C1->CR1 |= I2C_CR1_PE;
 }
