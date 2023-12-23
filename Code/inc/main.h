@@ -6,6 +6,7 @@
 #include "timer.h"
 #include "core_cm4.h"
 #include "buttons.h"
+#include "elrs.h"
 
 void FinishOperation();
 void UART();

@@ -13,7 +13,6 @@ void SysInit(void) {
   RCC->CR &= ~RCC_CR_HSEON;         // Disable HSE oscillator
   RCC->CR &= ~RCC_CR_PLLON;         // Disable PLL
   RCC->CR &= ~RCC_CR_PLLI2SON;     // Disable PLLI2S
-  RCC->PLLCFGR = 0x24003010;       // Reset PLLCFGR register
   RCC->CR &= ~RCC_CR_CSSON;         // Disable CSS
   RCC->CIR = 0x00000000;            // Reset CIR register
   
@@ -24,7 +23,7 @@ void SysInit(void) {
   // Configure PLL to multiply HSE by 168 to get 168MHz system clock
   RCC->PLLCFGR = (RCC_PLLCFGR_PLLSRC_HSE | RCC_PLLCFGR_PLLM_3); //25 / 8 = 3.125 
   RCC->PLLCFGR |= RCC_PLLCFGR_PLLN_6; // 3.125 * 64 = 200
-//  RCC->PLLCFGR |= (RCC_PLLCFGR_PLLP_0); // 200 / 2 =  100
+  //  RCC->PLLCFGR |= (RCC_PLLCFGR_PLLP_0); // 200 / 2 =  100
   RCC->PLLCFGR &= ~(RCC_PLLCFGR_PLLQ);
   RCC->CR |= RCC_CR_PLLON;          // Enable PLL
   while (!(RCC->CR & RCC_CR_PLLRDY)) {} // Wait for PLL to stabilize
@@ -36,7 +35,7 @@ void SysInit(void) {
   // Configure the AHB, APB1, and APB2 prescalers (if needed)
   RCC->CFGR |= RCC_CFGR_HPRE_DIV1;  // AHB prescaler = 1
   RCC->CFGR |= RCC_CFGR_PPRE1_DIV2; // APB1 prescaler = 2 100 / 2 = 50
-  RCC->CFGR |= RCC_CFGR_PPRE2_DIV16; // APB2 prescaler = 8 (21)
+  RCC->CFGR |= RCC_CFGR_PPRE2_DIV1; // APB2 prescaler = 1 100
 }
 
 int main (void)
@@ -56,14 +55,14 @@ int main (void)
   TIM2_Init();
   Buttons_Init();
 
-   GPIOB->MODER &= ~GPIO_MODER_MODER1;
+  GPIOB->MODER &= ~GPIO_MODER_MODER1;
   GPIOB->MODER |= GPIO_MODER_MODER1_0;
   GPIOB->OTYPER |= GPIO_OTYPER_OT_1;
 //  GPIOB->PUPDR |= GPIO_PUPDR_PUPDR1_0;
   GPIOB->ODR |= GPIO_ODR_ODR_1;
   InterfaceDraw(0, 0, "m");
   set_first_symbol();
-  
+  uart_init();
   while (1)
   {
     ButtonProcessing();
