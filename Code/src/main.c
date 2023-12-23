@@ -6,14 +6,6 @@ uint8_t countdown = 0;
 uint8_t countdown_update = 0;
 volatile uint32_t interface_update = 0;
 
-void delay(uint32_t ms) {
-  // Assuming a system clock of 16MHz
-  uint32_t ticks = ms * 16000; // Each millisecond has 16,000 ticks
-  while (ticks--) {
-    __NOP(); // No operation, just to waste time
-  }
-}
-
 void SysInit(void) {
   // Reset the RCC configuration to the default reset state
   RCC->CR |= RCC_CR_HSION;          // Turn on HSI oscillator
@@ -30,9 +22,9 @@ void SysInit(void) {
   while (!(RCC->CR & RCC_CR_HSERDY)) {} // Wait for HSE to stabilize
   
   // Configure PLL to multiply HSE by 168 to get 168MHz system clock
-  RCC->PLLCFGR |= (RCC_PLLCFGR_PLLSRC_HSE | RCC_PLLCFGR_PLLM_3); //25 / 8 = 3.125 
-  RCC->PLLCFGR |= (RCC_PLLCFGR_PLLN_0| RCC_PLLCFGR_PLLN_1| RCC_PLLCFGR_PLLN_3| RCC_PLLCFGR_PLLN_5 | RCC_PLLCFGR_PLLN_6); // 3.125 * 84 = 262
-  //    RCC->PLLCFGR |= (RCC_PLLCFGR_PLLP_0); // 262 / 4 =  131
+  RCC->PLLCFGR = (RCC_PLLCFGR_PLLSRC_HSE | RCC_PLLCFGR_PLLM_3); //25 / 8 = 3.125 
+  RCC->PLLCFGR |= RCC_PLLCFGR_PLLN_6; // 3.125 * 64 = 200
+//  RCC->PLLCFGR |= (RCC_PLLCFGR_PLLP_0); // 200 / 2 =  100
   RCC->PLLCFGR &= ~(RCC_PLLCFGR_PLLQ);
   RCC->CR |= RCC_CR_PLLON;          // Enable PLL
   while (!(RCC->CR & RCC_CR_PLLRDY)) {} // Wait for PLL to stabilize
@@ -43,7 +35,7 @@ void SysInit(void) {
   
   // Configure the AHB, APB1, and APB2 prescalers (if needed)
   RCC->CFGR |= RCC_CFGR_HPRE_DIV1;  // AHB prescaler = 1
-  RCC->CFGR |= RCC_CFGR_PPRE1_DIV4; // APB1 prescaler = 4 168 / 4 = 42
+  RCC->CFGR |= RCC_CFGR_PPRE1_DIV2; // APB1 prescaler = 2 100 / 2 = 50
   RCC->CFGR |= RCC_CFGR_PPRE2_DIV16; // APB2 prescaler = 8 (21)
 }
 

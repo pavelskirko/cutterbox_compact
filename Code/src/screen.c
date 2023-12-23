@@ -122,6 +122,14 @@ uint8_t number_lightup = 0;
 
 static SSD1306_t SSD1306;
 
+void delay(uint32_t ms) {
+  // Assuming a system clock of 16MHz
+  uint32_t ticks = ms * 16000; // Each millisecond has 16,000 ticks
+  while (ticks--) {
+    __NOP(); // No operation, just to waste time
+  }
+}
+
 void I2C_init()
 {
   RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;
@@ -138,15 +146,16 @@ void I2C_init()
   I2C1->CR1 &= ~I2C_CR1_SWRST;   /*!BUSY OFF*/
   I2C1->CR1 &= ~I2C_CR1_PE;
   I2C1->CR2 &= ~I2C_CR2_FREQ;
-  I2C1->CR2 |= 42;
+  I2C1->CR2 |= 50;
   I2C1->CCR |= I2C_CCR_FS | I2C_CCR_DUTY;
-  I2C1->CCR |= 4;
-  I2C1->TRISE = 43;
+  I2C1->CCR |= 5;
+  I2C1->TRISE = 16;
   I2C1->CR1 |= I2C_CR1_PE;
 }
 
 void ScreenInit()
 {
+  delay(1000);
   ssd1306_write(0xAE); //display off
   ssd1306_write(0x20); //Set Memory Addressing Mode   
   ssd1306_write(0x10); //00,Horizontal Addressing Mode;01,Vertical Addressing Mode;10,Page Addressing Mode (RESET);11,Invalid

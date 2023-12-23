@@ -8,6 +8,9 @@
 #include "buttons.h"
 
 void FinishOperation();
+void UART();
+char UART1_ReceiveChar();
+void UART1_SendChar(char ch);
 
 extern uint32_t count;
 extern uint32_t count_update;
